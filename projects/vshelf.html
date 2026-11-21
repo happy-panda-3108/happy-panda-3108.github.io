@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V-Shelf — LOTTE AX Challenge 2026 — 포트폴리오</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../index.html">happy-panda-3108</a>
+      <nav class="nav" aria-label="프로젝트">
+        <a href="magumanager.html">마구매니저</a>
+        <a href="vshelf.html">V-Shelf</a>
+        <a href="session-keeper.html">세션 키퍼</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="wrap">
+      <a class="back" href="../index.html#projects">← 프로젝트 목록</a>
+      <h1>V-Shelf — AI 페르소나 가상 진열대</h1>
+      <p class="meta"><span class="badge">본선 진출</span>LOTTE AX Challenge 2026 · 2026.10 ~ 11 · 개인 참가 · 문제 정의, 기획, 구현, 검증 설계</p>
+      <p class="lead">롯데지주가 처음 연 채용 연계형 AI 경진대회에서 롯데칠성음료 과제 'AI 페르소나 기반 신제품 시장 검증'을 골라 예선을 통과했습니다. 본선(2026.11.24~25)은 과제 상세와 현장 자료가 당일 공개되므로, 자료만 바꿔 끼우면 돌아가는 뼈대와 그것을 스스로 검증한 기록을 준비했습니다.</p>
+      <div class="page-links">
+        <a class="btn primary" href="https://github.com/happy-panda-3108/vshelf">GitHub 저장소</a>
+      </div>
+
+      <ul class="stats">
+        <li><strong>149개</strong><span>API 호출 없이 도는 테스트</span></li>
+        <li><strong>67건</strong><span>검증 세션의 지적 (62건에 조치 기록)</span></li>
+        <li><strong>82%</strong><span>일부러 망가뜨린 코드 78가지 중 테스트가 잡은 비율</span></li>
+        <li><strong>3세트</strong><span>가상 자료로 만든 모의 본선</span></li>
+      </ul>
+
+      <h2>문제 정의</h2>
+      <p>신제품의 시장 반응을 <b>출시 후에야</b> 확인하는 구조가 문제라고 봤습니다.</p>
+      <ul>
+        <li>음료 신제품은 월평균 2종꼴로 나오지만(2024~2026 공식 보도자료 기준), 편의점 신상품 가운데 1년 넘게 살아남는 비율은 5~10%입니다(CU, 2021).</li>
+        <li>출시 전 검증은 FGI 그룹당 수백만 원, 정량조사 착수까지 수 주가 들어 모든 신제품에 쓸 수 없습니다.</li>
+        <li>그래서 실제 수요는 소량 선판매처럼 출시 뒤에야 확인하는 경우가 많습니다.</li>
+      </ul>
+
+      <h2>해결 기획</h2>
+      <p>한국 소비자 페르소나가 경쟁 제품이 놓인 가상 진열대에서 신제품 컨셉을 보고 <b>구매 여부, 이유, 대신 고를 제품, 적정 가격</b>을 답합니다. AI는 조사를 대체하지 않고, 사람에게 물어볼 컨셉과 문항을 고르는 '조사 예산 배분기' 역할을 합니다.</p>
+      <div class="cols">
+        <div><h3>4단계 운영</h3><p>컨셉 평가(AI로 후보 선별) → 시음 피드백(맛은 사람이 관능검사) → 출시 전략(가격·채널·자기잠식) → 보정(출시 뒤 실적과 비교).</p></div>
+        <div><h3>신뢰도 등급</h3><p>모든 결과에 A 의사결정 참고 / B 실조사 병행 / C 탐색용을 붙입니다. 실조사 보정과 백테스트 전에는 C입니다.</p></div>
+        <div><h3>사람의 확인</h3><p>에이전트가 채운 칸은 코드가 실제 자료와 대조하고 사람이 확인한 뒤에 씁니다. 다음에 돌릴 명령은 에이전트가 아니라 코드가 만듭니다.</p></div>
+      </div>
+
+      <h2>본선용 뼈대</h2>
+      <p>자료 읽기 에이전트가 현장 자료를 정리표로 만들고, 과거 결과 표로 예측하거나 AI 패널에게 물어 측정한 뒤, 결과 리포트와 가상 FGI까지 이어지는 흐름을 Streamlit 시연 화면 하나로 묶었습니다.</p>
+      <ul>
+        <li><b>수치는 코드가, 해석은 LLM이</b> — 리포트의 숫자는 모두 코드가 계산하고 LLM은 해석만 합니다.</li>
+        <li><b>호출은 한 곳으로</b> — 비용 상한, 캐시, 원인별 재시도, 사건 집계를 하나의 호출 계층에 모았습니다.</li>
+        <li><b>한 자료에 치우치지 않기</b> — 가상 자료에서 나온 '내용'(무엇이 잘 팔린다)은 넣지 않고 '절차'(어떻게 검증한다)만 넣습니다. 실제 자료 없이 낸 결과는 수준(몇 %)을 말하지 않습니다.</li>
+        <li>페르소나: NVIDIA Nemotron-Personas-Korea(CC BY 4.0) 무작위 표본.</li>
+      </ul>
+
+      <h2>검증 구조</h2>
+      <p>코드를 만드는 세션과 검증하는 세션(별도의 AI 세션)을 나눴습니다. 검증 세션은 코드를 고치지 않고 지적만 남기며, 가상 모의 본선의 정답은 만드는 세션이 보지 않도록 봉인했습니다.</p>
+      <ul>
+        <li>결과와 관계없는 바꿈(표의 열 순서·줄 순서·단위)에 '가장 나은 후보'가 달라지던 문제를 찾아 고쳤습니다. 가상 표 6개 중 5개에서 달라지던 것이 0개가 됐습니다.</li>
+        <li>테스트가 일부러 망가뜨린 코드를 얼마나 잡는지 재서, 처음 34가지 중 17가지에서 테스트를 더한 뒤 78가지 중 64가지로 늘렸습니다.</li>
+        <li>LLM 실험 두 개를 동시에 돌렸다가 계정 단위 호출 한도에 걸려 한 실험에서 1,200건 중 504건이 포기된 일이 있었습니다. 보내기 전 속도 조절을 넣고 다시 돌려 포기 0건으로 만들고, "LLM 실험은 한 번에 하나" 규칙을 남겼습니다.</li>
+      </ul>
+
+      <h2>불리한 결과도 그대로</h2>
+      <p>모의 본선 1(가상 자료 8건)에서 도구의 예측은 단순 회귀 기준선을 넘지 못했습니다(평균 오차 6.70%p 대 6.11%p). 이 결과를 지우지 않고 기록해 "AI 결과만으로 판단하지 않는다"는 원칙의 근거로 삼았습니다.</p>
+      <div class="note">모의 본선 자료는 연습용으로 만든 가상 자료이며, 표본이 5~8건이라 우연의 범위가 넓습니다. 롯데나 사무국의 실제 자료·수치가 아닙니다. 본선 결과는 이 글을 쓴 시점에 아직 나오지 않았습니다.</div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a href="magumanager.html">← 이전: 마구매니저</a>
+      <a href="session-keeper.html">다음: 세션 키퍼 →</a>
+    </div>
+  </footer>
+</body>
+</html>

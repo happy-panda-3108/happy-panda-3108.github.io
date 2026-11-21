@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>포트폴리오 — AI와 함께 기획하고 끝까지 만듭니다</title>
+  <meta name="description" content="서비스가 끝난 모바일 야구 게임을 AI 코딩 에이전트와 함께 되살린 마구매니저 부활 프로젝트, LOTTE AX Challenge 2026 본선 진출, UiPath 무인 운영 자동 복구.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top">happy-panda-3108</a>
+      <nav class="nav" aria-label="목차">
+        <a href="#projects">프로젝트</a>
+        <a href="#ai">AI와 일하는 방식</a>
+        <a href="#skills">기술·자격</a>
+        <a href="#contact">연락</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">게임 기획 · AI 활용 개발</p>
+        <h1>AI와 함께 기획하고,<br>끝까지 만듭니다.</h1>
+        <p class="lead">서비스가 끝나 앱만 남은 모바일 야구 게임을 AI 코딩 에이전트와 함께 되살리고, 한 달 동안 59개 버전으로 키웠습니다. 문제를 먼저 정의하고, AI와 사람의 몫을 나누고, 결과는 숫자로 확인하는 방식으로 일합니다.</p>
+        <ul class="facts">
+          <li><b>마구매니저 부활 프로젝트</b> — 원작 복원에 새 콘텐츠 기획까지, 2026.10~ 진행 중</li>
+          <li><b>LOTTE AX Challenge 2026 본선 진출</b> — AI 페르소나 기반 신제품 시장 검증(롯데칠성음료 과제)</li>
+          <li><b>UiPath 무인 운영 자동 복구</b> — 업무 현장에서 2026.02부터 운영 중</li>
+        </ul>
+        <div class="buttons">
+          <a class="btn primary" href="#projects">프로젝트 보기</a>
+          <a class="btn" href="https://github.com/happy-panda-3108">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <h2>프로젝트</h2>
+        <p class="section-sub">세 가지 모두 Claude Code 에이전트와 함께 만들었고, 저는 문제 정의·구조 설계·결정·검수를 맡았습니다.</p>
+        <div class="cards">
+
+          <article class="card">
+            <div>
+              <h3>마구매니저 부활 프로젝트</h3>
+              <p class="meta"><span class="badge">개인</span>2026.10 ~ 진행 중 · 기획 전체, 작업 구조 설계, 의사결정, 실기기 검수</p>
+              <p>서비스가 종료돼 앱만 남은 모바일 야구 매니지먼트 게임 '마구매니저'를 복원했습니다. 원작 앱을 디컴파일해 통신 규격을 분석하고, 서버와 함께 사라진 규칙과 데이터를 기억과 실제 KBO 기록으로 다시 설계했습니다. FA 에이전트 협상, 레전드 리그, 공인구처럼 원작에 없던 콘텐츠도 기획했습니다.</p>
+              <ul class="tags"><li>게임 기획</li><li>밸런스 시뮬레이션</li><li>C# .NET 8</li><li>Unity 6.3</li><li>SQLite</li><li>Python</li><li>Claude Code</li></ul>
+              <div class="links"><a href="projects/magumanager.html">자세히 보기 →</a><a href="https://github.com/happy-panda-3108/magumanager-revival">GitHub</a></div>
+            </div>
+            <ul class="numbers">
+              <li><strong>59개 버전</strong><span>첫 APK 10-19 → 1.0.59 11-20</span></li>
+              <li><strong>요청 107종</strong><span>새로 만든 게임 서버가 처리</span></li>
+              <li><strong>타율 오차 .002</strong><span>KBO 44시즌 재현 엔진 검증</span></li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div>
+              <h3>V-Shelf — LOTTE AX Challenge 2026</h3>
+              <p class="meta"><span class="badge">본선 진출</span>2026.10 ~ 11 · 개인 참가 · 문제 정의, 기획, 구현, 검증 설계</p>
+              <p>롯데칠성음료 과제 'AI 페르소나 기반 신제품 시장 검증'. 한국 소비자 페르소나가 경쟁 제품이 놓인 가상 진열대에서 신제품 컨셉에 반응하는 검증 도구를 기획했습니다. 현장 자료만 바꿔 끼우면 돌아가는 뼈대를 만들고, 만드는 세션과 검증 세션을 나눠 결과를 스스로 의심하는 구조로 준비했습니다.</p>
+              <ul class="tags"><li>문제 정의</li><li>AI 에이전트 설계</li><li>Python</li><li>OpenAI API · Agents SDK</li><li>Streamlit</li><li>pytest</li></ul>
+              <div class="links"><a href="projects/vshelf.html">자세히 보기 →</a><a href="https://github.com/happy-panda-3108/vshelf">GitHub</a></div>
+            </div>
+            <ul class="numbers">
+              <li><strong>테스트 149개</strong><span>API 호출 없이 도는 코드 검증</span></li>
+              <li><strong>검증 지적 67건</strong><span>62건에 조치를 기록</span></li>
+              <li><strong>모의 본선 3세트</strong><span>가상 자료로 리허설</span></li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div>
+              <h3>UiPath Orchestrator 세션 유지 프로그램</h3>
+              <p class="meta"><span class="badge">업무</span>2026.02 ~ 운영 중 · 설계, 개발, 운영, 인수인계</p>
+              <p>무인 RPA를 멈추게 하던 '끊김'을 원인별로 나누고, 원인마다 다르게 복구하는 프로그램입니다. 끊긴 순간에는 검색도 AI도 쓸 수 없어 로그만 남기 때문에, 나중에 세어 볼 수 있는 기록부터 설계했습니다.</p>
+              <ul class="tags"><li>장애 원인 분리</li><li>Python</li><li>Playwright</li><li>pywinauto</li><li>멀티스레드</li><li>UiPath</li></ul>
+              <div class="links"><a href="projects/session-keeper.html">자세히 보기 →</a><span>업무 프로그램이라 코드는 비공개</span></div>
+            </div>
+            <ul class="numbers">
+              <li><strong>1,661 → 55회</strong><span>불필요한 재로그인(27시간 재현 테스트)</span></li>
+              <li><strong>1초 감지</strong><span>브라우저 중단 → 5~6초에 재시작</span></li>
+              <li><strong>40쪽</strong><span>인수인계 발표</span></li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="ai">
+      <div class="wrap">
+        <h2>AI와 일하는 방식</h2>
+        <p class="section-sub">Claude Code 세션 여러 개를 역할별로 나눠 동시에 운영합니다. 다른 사람도 그대로 따라 할 수 있는 순서입니다.</p>
+        <div class="steps">
+          <div class="step">
+            <h3>규칙 파일부터</h3>
+            <p>프로젝트 맨 위 CLAUDE.md에 세션별 담당 폴더, 실행 명령, '하지 말 것'을 적습니다. 사고가 나면 원인을 한 줄 규칙으로 더합니다.</p>
+          </div>
+          <div class="step">
+            <h3>세션을 역할로 나누기</h3>
+            <p>게임은 엔진·시스템 세션, 공모전은 만드는 세션·검증 세션. 공유 파일은 덧붙이기만 하고, 서버 재시작·빌드 같은 일은 먼저 알립니다.</p>
+          </div>
+          <div class="step">
+            <h3>기억과 기록</h3>
+            <p>결정과 이유는 장기 메모리에, 제 기획 원문은 기획기록에, 바뀐 점은 릴리즈 이력과 실험기록에 남겨 새 세션도 같은 맥락에서 시작합니다.</p>
+          </div>
+          <div class="step">
+            <h3>검증은 다른 눈으로</h3>
+            <p>만든 세션이 채점하지 않습니다. 숫자로 세어 보기 전까지 "고쳤다"는 가설로 다룹니다.</p>
+          </div>
+        </div>
+        <p class="human"><b>사람의 몫</b> — 문제 정의, 선택지 중 결정, 실제 기기에서의 검수, 빌드와 서버 재시작 승인. 코드 작성과 측정은 AI가 맡습니다.</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <h2>기술·자격</h2>
+        <p class="section-sub">프로젝트에서 실제로 쓴 것만 적었습니다.</p>
+        <div class="two">
+          <div class="box">
+            <h3>기술</h3>
+            <dl>
+              <dt>기획·분석</dt><dd>게임 시스템·경제 설계, 밸런스 시뮬레이션, 실제 기록과의 오차·상관 검증</dd>
+              <dt>개발</dt><dd>C# / .NET 8, SQLite, Unity 6.3(IL2CPP, Android arm64), Python, PowerShell, Playwright, pywinauto</dd>
+              <dt>AI</dt><dd>Claude Code(멀티 세션, 장기 메모리, 세션 간 메시지, 원격 제어), OpenAI API · Agents SDK</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>자격</h3>
+            <dl>
+              <dt>2026.06</dt><dd>데이터분석 준전문가(ADsP) — 한국데이터산업진흥원</dd>
+              <dt>2022.11</dt><dd>정보처리기사 — 한국산업인력공단</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2>연락</h2>
+        <p class="section-sub">코드와 기획 기록은 GitHub에 있습니다.</p>
+        <div class="buttons">
+          <a class="btn" href="https://github.com/happy-panda-3108">GitHub · happy-panda-3108</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>최종 업데이트 2026-11</span>
+      <a href="#top">맨 위로 ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
