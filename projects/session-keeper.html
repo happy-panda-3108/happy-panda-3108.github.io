@@ -3,88 +3,88 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>UiPath Orchestrator 세션 유지 프로그램 — 포트폴리오</title>
+  <title>UiPath Orchestrator 세션 유지 프로그램 · happy-panda-3108</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-  <header class="topbar">
+  <header class="top">
     <div class="wrap">
-      <a class="brand" href="../index.html">happy-panda-3108</a>
-      <nav class="nav" aria-label="프로젝트">
+      <a class="brand" href="../">happy-panda-3108</a>
+      <nav class="menu" aria-label="프로젝트">
         <a href="magumanager.html">마구매니저</a>
         <a href="vshelf.html">V-Shelf</a>
-        <a href="session-keeper.html">세션 키퍼</a>
+        <a href="session-keeper.html">세션 유지 프로그램</a>
       </nav>
     </div>
   </header>
 
-  <main class="page">
-    <div class="wrap">
-      <a class="back" href="../index.html#projects">← 프로젝트 목록</a>
-      <h1>UiPath Orchestrator 세션 유지 프로그램</h1>
-      <p class="meta"><span class="badge">업무</span>2026.02 ~ 운영 중 · 설계, 개발, 운영, 인수인계 · Python, Playwright, pywinauto</p>
-      <p class="lead">무인으로 도는 RPA 로봇이 멈추지 않도록, UiPath Orchestrator 웹 세션과 망 인증을 사람 없이 유지하고 끊기면 원인에 맞게 복구하는 프로그램입니다.</p>
-      <div class="note">업무 프로그램이라 코드와 내부 정보(기관, 사내 시스템과 보안 프로그램의 이름, 설정값)는 공개하지 않습니다. 이 페이지는 설계와 판단 기준만 정리했습니다.</div>
+  <main>
+    <article class="doc">
+      <div class="wrap">
+        <a class="back" href="../#projects">프로젝트 목록</a>
+        <h1>UiPath Orchestrator 세션 유지 프로그램</h1>
+        <p class="sub">업무 · 2026.02 – 현재 · 설계, 개발, 운영 · Python, Playwright, pywinauto</p>
+        <div class="aside"><p>업무 프로그램이라 코드와 내부 정보는 공개하지 않고, 설계와 판단 기준만 정리했습니다.</p></div>
 
-      <ul class="stats">
-        <li><strong>1,661 → 55회</strong><span>불필요한 재로그인 (27시간 재현 테스트)</span></li>
-        <li><strong>1초 감지</strong><span>11번 중 1번만 스스로 복구하던 브라우저 중단 → 5~6초에 재시작</span></li>
-        <li><strong>3시간</strong><span>서버 장애 중 헛되이 재로그인하던 시간 → 장애로 분류해 기다림</span></li>
-        <li><strong>40쪽</strong><span>인수인계 발표와 문서</span></li>
-      </ul>
+        <div class="figures">
+          <div><strong>55회</strong><span>27시간 재현 테스트의 불필요한 재로그인 (고치기 전 1,661회)</span></div>
+          <div><strong>1초</strong><span>브라우저 중단 감지, 5~6초 안에 재시작</span></div>
+          <div><strong>40쪽</strong><span>인수인계 발표</span></div>
+        </div>
 
-      <h2>문제</h2>
-      <p>망 인증이 풀리면 그 PC는 인터넷이 끊기고 로봇 작업이 멈춥니다. 끊긴 순간에는 검색도 원격 지원도 AI도 쓸 수 없어 남는 단서는 로그뿐이었습니다. 처음에는 모든 '끊김'을 한 가지로 다뤘고, 큰 버그는 대부분 거기서 나왔습니다.</p>
+        <h2>문제</h2>
+        <p>무인으로 도는 RPA 로봇은 UiPath Orchestrator 웹 세션과 망 인증이 유지돼야 일을 합니다. 망 인증이 풀리면 그 PC는 인터넷이 끊기고, 그 순간에는 검색도 원격 지원도 AI도 쓸 수 없어 남는 단서는 로그뿐이었습니다. 처음에는 모든 끊김을 한 가지로 다뤘고, 큰 버그는 대부분 거기서 나왔습니다.</p>
 
-      <h2>원인을 나누고, 대응도 나눴습니다</h2>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>원인</th><th>겉보기</th><th>대응</th></tr></thead>
-          <tbody>
-            <tr><td>망 차단</td><td>망이 실제로 막힘</td><td>망 인증을 다시 함</td></tr>
-            <tr><td>서버 장애</td><td>연결 실패지만 망 인증은 살아 있음</td><td>인증을 건드리지 않고 길게 기다림</td></tr>
-            <tr><td>인증만 풀림</td><td>인증 프로그램은 로그아웃인데 서버까지 닿음</td><td>바로 다시 인증하고, 메인 작업은 막지 않음</td></tr>
-            <tr><td>추가 인증 미완료</td><td>서버 장애와 똑같아 보임</td><td>가장 먼저 확인해 오판을 막고, 브라우저 작업을 보류</td></tr>
-            <tr><td>브라우저 중단</td><td>캐시된 값 때문에 살아 있는 것처럼 보임</td><td>실제로 물어봐서 1초 안에 감지하고 곧장 재시작</td></tr>
-          </tbody>
-        </table>
+        <h2>원인별로 나누기</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>원인</th><th>겉으로 보이는 것</th><th>대응</th></tr></thead>
+            <tbody>
+              <tr><td class="nowrap">망 차단</td><td>망이 실제로 막힘</td><td>망 인증을 다시 함</td></tr>
+              <tr><td class="nowrap">서버 장애</td><td>연결은 실패하지만 망 인증은 살아 있음</td><td>인증은 건드리지 않고 길게 기다림</td></tr>
+              <tr><td class="nowrap">인증만 풀림</td><td>인증 프로그램은 로그아웃인데 서버에는 닿음</td><td>바로 다시 인증하고, 메인 작업은 막지 않음</td></tr>
+              <tr><td class="nowrap">추가 인증 미완료</td><td>서버 장애와 똑같아 보임</td><td>가장 먼저 확인해 오판을 막고, 브라우저 작업은 보류</td></tr>
+              <tr><td class="nowrap">브라우저 중단</td><td>캐시된 값 때문에 살아 있는 것처럼 보임</td><td>실제로 확인해서 1초 안에 감지하고 곧바로 재시작</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>판정은 망 없이도 읽을 수 있는 신호(레지스트리, 창 상태, 프로세스)부터 보도록 순서를 정했습니다. 서버 장애를 망 차단으로 잘못 보고 3시간 동안 재로그인만 반복하던 문제도 이렇게 나눈 뒤에야 풀렸습니다.</p>
+
+        <h2>구조</h2>
+        <ul>
+          <li>브라우저는 메인 스레드만 다룹니다. 망 인증 감시(2초)와 멈춤 감시(30초) 스레드는 판정과 복구만 하고, 브라우저 자동화 도구가 스레드 안전하지 않아 브라우저는 건드리지 않습니다.</li>
+          <li>감시 스레드는 망이 실제로 막혔다가 풀렸을 때만 메인 스레드를 깨웁니다.</li>
+          <li>로그는 상태가 바뀔 때만 남깁니다. 원인은 에러가 있는지보다 같은 줄이 몇 번, 몇 초 간격으로 반복됐는지로 찾습니다. 지금까지 찾은 큰 문제는 모두 경고나 정보 줄에 있었습니다.</li>
+          <li>끊긴 순간의 창 상태는 오프라인 수집기로 저장하고, 27시간짜리 장애도 가짜 객체 테스트로 바로 재현합니다.</li>
+        </ul>
+
+        <h2>판단 기준</h2>
+        <ol>
+          <li>가장 덜 흔들리는 값으로 판정한다.</li>
+          <li>조작하기 전에 상태를 읽는다. 확인이 조작보다 훨씬 싸다.</li>
+          <li>실패의 대가를 성공과 다르게 매긴다. 실패 뒤 대기가 평상시와 같으면 고장 난 시간이 그대로 늘어난다.</li>
+          <li>애매하면 단정하지 않는다. 틀린 확신이 더 위험하다.</li>
+          <li>캐시된 값은 살아 있다는 증거가 아니다.</li>
+          <li>대응책은 효과를 세어 본다. 셀 때는 무엇을 셌는지도 남긴다.</li>
+        </ol>
+
+        <h2>보안</h2>
+        <ul>
+          <li>자격증명은 OS 환경변수에만 두고, 로그에서는 자동으로 가립니다. 길이도 남기지 않습니다.</li>
+          <li>세 번 틀리면 잠기는 계정은 자동 로그인을 두 번까지만 시도합니다.</li>
+          <li>실제 로그인을 일으키는 확인은 사람이 지켜볼 때만 합니다.</li>
+        </ul>
+
+        <h2>AI 활용</h2>
+        <p>망이 연결됐을 때만 AI에게 로그를 보여 줄 수 있어서, AI의 답은 로그에 남은 만큼만 정확했습니다. 그래서 AI가 판단할 근거를 먼저 갖췄습니다. 실측값과 하지 말아야 할 것은 CLAUDE.md에, 장애별 날짜와 횟수는 개발 이력에 남겨 AI가 매번 같은 맥락에서 출발하게 했고, 로그로 세어 보기 전까지 수정은 가설로 다뤘습니다.</p>
       </div>
-      <p>판정은 망 없이도 읽히는 신호(레지스트리, 창 상태, 프로세스)부터 보도록 순서를 정했습니다.</p>
-
-      <h2>구조</h2>
-      <ul>
-        <li><b>역할이 섞이지 않게</b> — 브라우저는 메인 스레드만 다룹니다. 망 인증 감시(2초)와 멈춤 감시(30초) 스레드는 판정과 복구만 하고 브라우저를 건드리지 않습니다(브라우저 자동화 도구가 스레드 안전하지 않기 때문).</li>
-        <li><b>헛기상 막기</b> — 감시 스레드는 망이 실제로 막혔다 풀렸을 때만 메인을 깨웁니다.</li>
-        <li><b>세어 볼 수 있는 로그</b> — 상태가 바뀔 때만 기록해, "에러가 있나"가 아니라 "같은 줄이 몇 번, 몇 초 간격으로 반복됐나"로 원인을 찾습니다. 지금까지 찾은 큰 문제는 모두 경고·정보 줄에 있었습니다.</li>
-        <li><b>재현</b> — 끊긴 순간의 창 상태를 오프라인 수집기로 저장하고, 가짜 객체 테스트로 27시간짜리 장애도 바로 재현합니다.</li>
-      </ul>
-
-      <h2>여기서 굳은 판단 기준</h2>
-      <ol>
-        <li>가장 덜 흔들리는 값으로 판정한다.</li>
-        <li>조작하기 전에 상태를 읽는다. 확인이 조작보다 훨씬 싸다.</li>
-        <li>실패의 대가를 성공과 다르게 매긴다. 실패 뒤 대기가 평상시와 같으면 고장 난 시간이 그대로 늘어난다.</li>
-        <li>애매하면 단정하지 않는다. 틀린 확신이 더 위험하다.</li>
-        <li>캐시된 값은 살아 있다는 증거가 아니다.</li>
-        <li>대응책은 효과를 세어 본다. 셀 때는 무엇을 셌는지도 남긴다.</li>
-      </ol>
-
-      <h2>보안 원칙</h2>
-      <ul>
-        <li>자격증명은 OS 환경변수에만 두고, 로그에서는 자동으로 가립니다(길이도 남기지 않음).</li>
-        <li>3회 실패 시 잠기는 계정은 자동 로그인을 2회로 제한했습니다.</li>
-        <li>실제 로그인을 일으키는 확인은 사람이 지켜볼 때만 합니다.</li>
-      </ul>
-
-      <h2>AI 활용</h2>
-      <p>망이 연결됐을 때만 AI에게 로그를 보여 줄 수 있어서, AI의 답은 로그에 남은 만큼만 정확했습니다. 그래서 AI가 판단할 근거부터 설계했습니다. 실측값과 '하지 말 것' 목록은 CLAUDE.md에, 장애별 날짜와 횟수는 개발 이력에 남겨 AI가 매번 같은 맥락에서 출발하게 했고, "로그로 세어 보기 전까지 수정은 가설"을 규칙으로 삼았습니다.</p>
-    </div>
+    </article>
   </main>
 
   <footer>
     <div class="wrap">
-      <a href="vshelf.html">← 이전: V-Shelf</a>
-      <a href="../index.html#projects">프로젝트 목록 →</a>
+      <a href="vshelf.html">이전: V-Shelf</a>
+      <a href="../#projects">프로젝트 목록</a>
     </div>
   </footer>
 </body>
