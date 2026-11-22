@@ -91,6 +91,7 @@ article.doc { padding: 56px 0 40px; }
 .figures strong { display: block; font-size: 22px; letter-spacing: -0.01em; color: var(--ink); line-height: 1.3; }
 .figures span { font-size: 13px; color: var(--ink-3); line-height: 1.5; display: block; margin-top: 4px; }
 .doc .links { display: flex; gap: 18px; flex-wrap: wrap; font-size: 15px; margin: 0 0 28px; }
+.doc .links .muted { color: var(--ink-3); }
 figure { margin: 24px 0; }
 figure img { border: 1px solid var(--line); border-radius: 6px; }
 figcaption { font-size: 13px; color: var(--ink-3); margin-top: 8px; }
